@@ -1,0 +1,13 @@
+﻿@model MusicStore.Models.Album
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Album: @Model.Title</h2>
+<ul>
+    <li>Genre: @Model.Genre.Name</li>
+    <li>Artist: @Model.Artist.Name</li>
+    <li>Price: @Model.Price</li>
+</ul>
+

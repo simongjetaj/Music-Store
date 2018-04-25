@@ -1,0 +1,7 @@
+﻿@model IEnumerable<MusicStore.Models.Genre>
+
+@foreach (var genre in Model)
+{
+    @Html.ActionLink(genre.Name, "Browse", "Store", new { genre = genre.Name }, htmlAttributes: new { @class = "dropdown-item" })
+}
+

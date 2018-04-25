@@ -1,0 +1,33 @@
+﻿.main-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-img img {
+    width: 55%;
+}
+
+.imgs img {
+    width: 100%;
+}
+
+.imgs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+    grid-auto-flow: dense;
+    cursor: pointer;
+    margin-top: 5px;
+    width: 55%;
+}
+
+a:after {
+    content: none;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}

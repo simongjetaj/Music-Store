@@ -1,0 +1,29 @@
+﻿@model IEnumerable<MusicStore.Models.Album>
+
+@{
+    ViewBag.Title = "Music Store";
+}
+
+@*@section Styles
+    {
+        @Styles.Render("~/Content/css/styles.css")
+    }*@
+
+<div class="row text-center">
+    @foreach (var album in Model)
+    {
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card">
+                <img class="card-img-top" src="~/Content/images/@(album.AlbumArtUrl).jpg" alt="">
+                <div class="card-body">
+                    <p class="card-text">@album.Title</p>
+                    @Html.ActionLink("More Info", "Details", "Store", new { id = album.AlbumId }, new { @class = "btn btn-dark text-white" })
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@*@section Scripts {
+    
+}*@

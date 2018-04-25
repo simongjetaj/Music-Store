@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @*@Styles.Render("~/bundles/css")*@
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/jquery-ui.min.css")
+    @RenderSection("styles", false)
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <a class="navbar-brand" href="/">Music Store</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    @Ajax.ActionLink("Genres", "Genres", "Home", null, new AjaxOptions()
+                    {
+                        HttpMethod = "GET",
+                        UpdateTargetId = "genres",
+                        InsertionMode = InsertionMode.Replace,
+                        LoadingElementId = "loading"
+                    }, new { @class = "nav-link dropdown-toggle", id = "dropdown", data_toggle = "dropdown", aria_haspopup = "true", aria_expanded = "false" })
+
+                    <div id="genres" class="dropdown-menu" aria-labelledby="dropdown">
+                    </div>
+                </li>
+                <li class="nav-item" id="loading" style="display: none">
+                    <img src="~/Content/images/loading.gif" width="20"  height="20" style="position: relative; top: .5em;"/>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/StoreManager/">Store Manager</a>
+                </li>
+            </ul>
+                
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-inline my-2 my-lg-0" }))
+            {
+                @Html.TextBox("searchTerm", null, new { @class = "form-control mr-sm-2", id = "txtSearch", placeholder = "Search Album..." })
+                <button class="btn btn-outline-light my-2 my-sm-0 mr-5" type="submit">Search</button>
+            }
+
+            @Html.Partial("_LoginPartial")
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        @RenderBody()
+        <hr />
+        <footer class="text-center mt-2 mb-2">
+            <p><strong>Simon S. Gjetaj</strong> &copy; @DateTime.Now.Year</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    @*<script>
+            window.jQuery || document.write('<script src="~/Scripts/...">\x3C/script>')
+        </script>*@
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/App/MusicScripts.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
